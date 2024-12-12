@@ -14,7 +14,7 @@ def chat_view(request):
             if "안녕" in question:
                 answer = '저도 반가워요. 즐거운 하루 되세요'
             else:
-                answer = "잘 모르겠습니다. 다시 입력해주세요";
+                answer = "잘 모르겠습니다. 다시 입력해주세요"
 
             # DB에 질문과 답변 저장
             chat = Chat(question=question, answer=answer)
