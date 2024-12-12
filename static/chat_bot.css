@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 400px;
+    height: 600px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#chat-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.message {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 8px;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background: #e0f7fa;
+    margin-left: auto; /* 오른쪽 정렬 */
+}
+
+.message.bot {
+    background: #f1f8e9;
+    margin-right: auto; /* 왼쪽 정렬 */
+}
+
+#chat-form {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+#chat-form input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#chat-form button {
+    background: #00796b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#chat-form button:hover {
+    background: #004d40;
+}

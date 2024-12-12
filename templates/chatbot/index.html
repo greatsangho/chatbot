@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'chat_bot.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery-3.7.1.min.js' %}" ></script>
+
+</head>
+<body>    
+    <div class="chat-container">
+        <div id="chat-box"></div>
+        <form id="chat-form">
+            <input type="text" id="question-input" placeholder="무엇이든 물어보세요....">
+            <button type="submit">물어보기</button>
+        </form>
+    </div>
+</body>
+<script>
+    const chatbox = $("#chat-box")
+    const chatform = $("#chat-form")
+    const questionnput = $("#question-input")
+    // 질문 제출
+    chatform.on("submit", function(e){
+        e.preventDefault();
+        const question = questionnput.val().trim();
+        if(!question) return;
+
+        
+        function appendMsg(sender,message){
+            let emoji = sender === 'user' ? '😀':'🤖';
+
+            let innerHtml = `<div class "message ${sender}">
+                            <span class = "emoji">${emoji}</span>
+                            <p>${message}</p>
+                        </div>
+                        `
+            chatbox.append(innerHtml);
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+        }
+        // 사용자 질문 표시 
+        appendMsg('user',question)
+        questionnput.val("");
+        // 서버에 질문 전송
+        $.ajax({
+            url:'',
+            method : 'POST',
+            data:{
+                question: question,
+                csrfmiddlewretoekn:'{{csrf_token}}'
+            },
+            success:function(data){
+                // 답변표시
+                appendMsg('bot',data.answer)
+                    
+            }
+        });
+    });
+
+</script>
+</html>
